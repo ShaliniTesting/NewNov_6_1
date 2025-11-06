@@ -17,10 +17,12 @@ app.get('/evening', (req, res) => {
   res.send('Good evening');
 });
 
-// Start the server and listen on configured PORT
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+// Start the server only when running directly (not when imported for testing)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+  });
+}
 
 // Export app for testing purposes
 module.exports = app;
